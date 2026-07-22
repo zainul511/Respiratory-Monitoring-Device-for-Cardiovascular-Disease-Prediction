@@ -26,3 +26,10 @@ The device measures chest expansion and contraction using three strategically pl
 | Boost Converter | 1 | Steps up the battery voltage to the required system voltage. |
 | 3.3 V Voltage Regulator | 1 | Provides a stable 3.3 V supply for the ESP32 and sensors. |
 | Slide Switch | 1 | Main power ON/OFF switch for the device. |
+
+## 3D Printed Parts
+
+The following custom 3D-printed parts were designed for the wearable system:
+
+- **Enclosure_Box.stl** – Houses the ESP32-C3 and connectors. Includes cutouts for the USB-C port, JST connectors, and the power switch/push button.
+- **Bend_on_Belt.stl** – A belt-mounted cable guide that routes sensor wires securely and reduces mechanical stress during movement.
