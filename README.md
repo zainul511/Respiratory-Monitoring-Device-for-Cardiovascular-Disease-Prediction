@@ -12,3 +12,14 @@ The device measures chest expansion and contraction using three strategically pl
     * **Incremental PCA (Principal Component Analysis):** Extracts the dominant breathing motion vector from the 3-axis acceleration data.
     * **EMA (Exponential Moving Average):** Applies smoothing filters to eliminate high-frequency noise and jitter.
 * **Wearable Design:** A stretchable belt with  a custom 3D-printed enclosure
+
+## Components Used
+
+| Component | Quantity | Description |
+|-----------|:--------:|-------------|
+| ESP32 Development Board | 1 | Main microcontroller (originally ESP32-C3). |
+| MPU6050 Sensors | 3 | 6-axis accelerometer/gyroscope modules. |
+| PCA9548A Multiplexer | 1 | Used in V1 implementation to manage I²C address conflicts. |
+| Elastic Belt | 1 | 1.5-inch wide stretchable belt with a side-release buckle. |
+| JST Connectors | 3 | Detachable connectors for sensor connections. |
+| Heat Shrink Tube | – | 1.2 cm diameter tubing for wire insulation and cable management. |
