@@ -22,3 +22,7 @@ The device measures chest expansion and contraction using three strategically pl
 | Elastic Belt | 1 | 1.5-inch wide stretchable belt with a side-release buckle. |
 | JST Connectors | 3 | Detachable connectors for sensor connections. |
 | Heat Shrink Tube | – | 1.2 cm diameter tubing for wire insulation and cable management. |
+| 3.7 V Li-Po Battery | 1 | Rechargeable lithium-polymer battery for portable power. |
+| Boost Converter | 1 | Steps up the battery voltage to the required system voltage. |
+| 3.3 V Voltage Regulator | 1 | Provides a stable 3.3 V supply for the ESP32 and sensors. |
+| Slide Switch | 1 | Main power ON/OFF switch for the device. |
