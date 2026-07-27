@@ -123,3 +123,22 @@ The desktop application performs real-time data acquisition, signal processing, 
   - Linear acceleration values
   - Extracted respiratory waveform
   - Estimated displacement waveform
+
+
+ ## Development Challenges & Solutions
+
+### MPU6050 Communication Failure
+
+**Problem:**
+- One MPU6050 sensor powered on correctly but failed to transmit data.
+
+**Investigation:**
+- Continuity testing revealed a microscopic solder bridge between the pull-up resistors.
+- The SDA line was unintentionally shorted to VCC.
+
+**Solution:**
+- Removed excess solder and verified the I2C communication.
+- The sensor returned to normal operation.
+
+**Lesson Learned:**
+- Always verify sensor module connections and perform continuity checks before final assembly.
