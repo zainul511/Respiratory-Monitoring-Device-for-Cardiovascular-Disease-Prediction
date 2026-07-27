@@ -33,3 +33,17 @@ The following custom 3D-printed parts were designed for the wearable system:
 
 - **Enclosure_Box.stl** – Houses the ESP32-C3 and connectors. Includes cutouts for the USB-C port, JST connectors, and the power switch/push button.
 - **Bend_on_Belt.stl** – A belt-mounted cable guide that routes sensor wires securely and reduces mechanical stress during movement.
+
+## Technical Implementation
+
+### 1. Sensor Placement & Assembly
+
+- **Three MPU6050 IMUs** are mounted on the elastic belt for respiratory motion sensing.
+- **One IMU** is positioned centrally below the chest.
+- **Two IMUs** are positioned symmetrically on the left and right sides of the central sensor.
+- The sensors are connected using **12 signal lines**:
+  - VCC × 3
+  - GND × 3
+  - SDA × 3
+  - SCL × 3
+- All wiring is bundled into a **stable cable harness** using heat-shrink tubing to improve mechanical strength, reduce cable movement, and enhance reliability during wearable operation.
