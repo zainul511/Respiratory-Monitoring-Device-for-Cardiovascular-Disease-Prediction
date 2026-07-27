@@ -142,3 +142,10 @@ The desktop application performs real-time data acquisition, signal processing, 
 
 **Lesson Learned:**
 - Always verify sensor module connections and perform continuity checks before final assembly.
+
+##  Author
+
+This project was developed as part of an undergraduate final-year engineering project.
+
+- **Subsystem:** Wearable Respiratory Effort Monitoring Device  
+- **Main Project:** Pulse-Based Diagnosis System for Cardiovascular Disease Prediction
