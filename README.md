@@ -47,3 +47,44 @@ The following custom 3D-printed parts were designed for the wearable system:
   - SDA × 3
   - SCL × 3
 - All wiring is bundled into a **stable cable harness** using heat-shrink tubing to improve mechanical strength, reduce cable movement, and enhance reliability during wearable operation.
+
+
+## 2. Firmware (ESP-IDF + FreeRTOS)
+
+The firmware is developed using **ESP-IDF** with **FreeRTOS**, providing deterministic task scheduling and reliable acquisition of respiratory motion data from three MPU6050 IMUs at **100 Hz**.
+
+### Method 1 – I²C Multiplexer Architecture
+
+This implementation uses a **PCA9548A I²C multiplexer** to interface with three MPU6050 sensors that all operate at the default **0x68** I²C address. The ESP32 selects the required multiplexer channel before communicating with each sensor.
+
+| Sensor | PCA9548A Channel | I²C Address |
+|---------|-----------------:|------------:|
+| IMU 1 | 0 | 0x68 |
+| IMU 2 | 1 | 0x68 |
+| IMU 3 | 2 | 0x68 |
+
+**Features**
+- Single ESP32 hardware I²C bus
+- PCA9548A resolves address conflicts
+- Sequential sensor polling at **100 Hz**
+- Data transmitted to the PC via USB Serial as structured packets
+
+---
+
+### Method 2 – Dual I²C Bus Architecture
+
+This implementation eliminates the external multiplexer by utilizing the ESP32's **two independent hardware I²C controllers**. One bus interfaces with a single MPU6050, while the second bus connects to two MPU6050 sensors configured with different addresses (**0x68** and **0x69**) using the AD0 pin.
+
+| ESP32 I²C Bus | Connected Sensors | I²C Address(es) |
+|---------------|-------------------|-----------------|
+| I²C Bus 0 | IMU 1 | 0x68 |
+| I²C Bus 1 | IMU 2, IMU 3 | 0x68, 0x69 |
+
+**Features**
+- No external I²C multiplexer required
+- Reduced hardware complexity and wiring
+- Uses both ESP32 hardware I²C peripherals
+- **Utilizes the MPU6050 Digital Motion Processor (DMP) for onboard sensor fusion**
+- **Obtains gravity-compensated linear acceleration directly from the DMP, reducing software processing on the ESP32**
+- Improved signal quality by removing the gravity component before transmission
+- Data acquired at **100 Hz** and transmitted via USB Serial as structured packets
