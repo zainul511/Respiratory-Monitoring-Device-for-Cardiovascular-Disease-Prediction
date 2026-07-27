@@ -88,3 +88,38 @@ This implementation eliminates the external multiplexer by utilizing the ESP32's
 - **Obtains gravity-compensated linear acceleration directly from the DMP, reducing software processing on the ESP32**
 - Improved signal quality by removing the gravity component before transmission
 - Data acquired at **100 Hz** and transmitted via USB Serial as structured packets
+
+## 3. PC Software (Python Dashboard)
+
+The desktop application performs real-time data acquisition, signal processing, visualization, and data logging.
+
+### Data Acquisition
+
+- Reads real-time sensor data from the ESP32 through **USB Serial communication** (`COMx` on Windows).
+- Receives linear acceleration data from the three MPU6050 IMU sensors.
+
+### Signal Processing Pipeline
+
+1. **Dimensionality Reduction**
+   - Applies **Incremental Principal Component Analysis (IPCA)** to combine 3-axis acceleration data into a single dominant respiratory motion vector.
+
+2. **Signal Smoothing**
+   - Uses an **Exponential Moving Average (EMA)** filter to reduce high-frequency noise and improve waveform stability.
+
+3. **Waveform Preservation**
+   - Applies a **Besel filter** to remove unwanted frequency components while preserving the respiratory waveform characteristics.
+
+4. **Displacement Estimation**
+   - Performs double integration of filtered acceleration data to estimate chest displacement.
+   - A low-pass filter(cutoff 0.2Hz) is applied before integration to reduce low-frequency drift caused by sensor bias and integration errors.
+
+### Output
+
+- Real-time visualization of:
+  - Respiratory effort waveform
+  - Estimated chest displacement waveform
+
+- CSV data logging:
+  - Linear acceleration values
+  - Extracted respiratory waveform
+  - Estimated displacement waveform
